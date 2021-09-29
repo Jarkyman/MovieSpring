@@ -11,38 +11,47 @@ import java.util.ArrayList;
 public class MovieRepository {
 
   public String getFirstMovie() {
-    return getOneMovie("SELECT * FROM movies LIMIT 1").toString();
+    String result = "";
+
+    result += "<h1> First movie </h1>";
+    result += getOneMovie("SELECT * FROM movies LIMIT 1").toString();
+
+    return result;
   }
 
   public String getRandomMovie() {
-    return getOneMovie("SELECT * FROM movies ORDER BY RAND() LIMIT 1").toString();
+    String result = "";
+
+    result += "<h1> First movie </h1>";
+    result += getOneMovie("SELECT * FROM movies ORDER BY RAND() LIMIT 1").toString();
+    return result;
   }
 
   public String getPopularMovies(int numOfMovie) {
     ArrayList<String> movies =  moviesToString(getMovieList("SELECT * FROM movies ORDER BY popularity DESC LIMIT 10"));
-    String list = "<h1> Top " + numOfMovie + " popular movies</h1> <p> <br>";
+    StringBuilder result = new StringBuilder("<h1> Top " + numOfMovie + " popular movies</h1> <ol>");
 
-    for (int i = 0; i < movies.size(); i++ ) {
-      list += (i+1) + ". " + movies.get(i) + "<br>"; //br go to next line like \n
+    for (String movie : movies) {
+      result.append("<li>").append(movie).append("</li>"); //br go to next line like \n
     }
 
-    list += "</p>";
+    result.append("</ol>");
 
-    return list;
+    return result.toString();
   }
 
   public String getAwardMovies() {
     ArrayList<String> movies = moviesToString(getMovieList("SELECT * FROM movies WHERE awards LIKE \"Yes\""));
     int numOfAwards = getCount("SELECT count(*) FROM movies WHERE awards LIKE \"Yes\"");
-    String list = "<h1> List of " + numOfAwards + " movies with awards</h1> <p> <br>";
+    StringBuilder result = new StringBuilder("<h1> List of " + numOfAwards + " movies with awards</h1> <ol>");
 
-    for (int i = 0; i < movies.size(); i++ ) {
-      list += (i+1) + ". " + movies.get(i) + "<br>"; //br go to next line like \n
+    for (String movie : movies) {
+      result.append("<li>").append(movie).append("</li>");
     }
 
-    list += "</p>";
+    result.append("</ol>");
 
-    return list;
+    return result.toString();
   }
 
   //Hjælpe Metoder
