@@ -45,7 +45,7 @@ Alternatively see the GitHub documentation on [creating a pull request](https://
 Thanks to the following people who have contributed to this project:
 
 * [@Jarkyman](https://github.com/jarkyman) :santa:
-* [Moshizzl3](https://github.com/Moshizzl3) :100:
+* [@Moshizzl3](https://github.com/Moshizzl3) :100:
 
 ## Contact
 
